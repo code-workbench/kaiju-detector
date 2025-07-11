@@ -66,6 +66,229 @@
                 "close": false
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Terraform: Validate",
+            "type": "shell",
+            "command": "terraform",
+            "args": ["validate"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/infra"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Terraform: Plan",
+            "type": "shell",
+            "command": "terraform",
+            "args": ["plan", "-var-file=environment.tfvars"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/infra"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Terraform: Apply",
+            "type": "shell",
+            "command": "terraform",
+            "args": ["apply", "-var-file=environment.tfvars"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/infra"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Terraform: Destroy",
+            "type": "shell",
+            "command": "terraform",
+            "args": ["destroy", "-var-file=environment.tfvars"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/infra"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Terraform: Init",
+            "type": "shell",
+            "command": "terraform",
+            "args": ["init"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/infra"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-check-image",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-check-image", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-chip-images",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-chip-images", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-convert-images",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-convert-images", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-get-bounding-box",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-get-bounding-box", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-get-satellite-imagery",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-get-satellite-imagery", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-inject-kaiju",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-inject-kaiju", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Service: service-resize-images",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-resize-images", "--docker-file", "./Dockerfiles/Dockerfile.service"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Kaiju Base Image",
+            "type": "shell",
+            "command": "./scripts/build-service.sh",
+            "args": ["--repo-prefix", "kaiju", "--container-name", "service-base-kaiju", "--docker-file", "./Dockerfiles/Dockerfile.base"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
         }
     ]
 }
