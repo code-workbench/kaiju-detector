@@ -65,3 +65,17 @@ resource "azurerm_role_assignment" "aks_subnet" {
   role_definition_name = "Network Contributor"
   principal_id         = azurerm_kubernetes_cluster.main.identity[0].principal_id
 }
+
+# Role assignment for AKS to pull from Azure Container Registry
+resource "azurerm_role_assignment" "aks_acr_pull" {
+  scope                = azurerm_container_registry.main.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_kubernetes_cluster.main.kubelet_identity[0].object_id
+}
+
+# Role assignment for AKS to access storage account
+resource "azurerm_role_assignment" "aks_storage_contributor" {
+  scope                = azurerm_storage_account.main.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = azurerm_kubernetes_cluster.main.identity[0].principal_id
+}
