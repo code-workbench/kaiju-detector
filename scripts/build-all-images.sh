@@ -8,47 +8,32 @@ echo "Using local registry: $LOCAL_REGISTRY"
 echo "Building all images..."
 
 echo "Building base image..."
-docker build -t kaiju/service-base-kaiju:latest -f ./Dockerfiles/Dockerfile.base .
-docker tag kaiju/service-base-kaiju:latest $LOCAL_REGISTRY/kaiju/service-base-kaiju:latest
-docker push $LOCAL_REGISTRY/kaiju/service-base-kaiju:latest
+bash ./scripts/build-service.sh --repo-prefix kaiju --container-name service-base-kaiju --docker-file ./Dockerfiles/Dockerfile.base --registry $LOCAL_REGISTRY
 echo "Built and pushed base image..."
+
+# Function to build, tag, and push a service image
+build_service() {
+    local service_name=$1
+    echo "Building $service_name image..."
+    bash ./scripts/build-service.sh --repo-prefix kaiju --container-name $service_name --docker-file ./Dockerfiles/Dockerfile.service --registry $LOCAL_REGISTRY
+    echo "Built and pushed $service_name image..."
+}
 
 echo "Building service images..."
 
-echo "Building service-get-bounding-box image..."
-docker build --build-arg SERVICE_NAME=service-get-bounding-box -t kaiju/service-get-bounding-box:latest -f ./Dockerfiles/Dockerfile.service .
-docker tag kaiju/service-get-bounding-box:latest $LOCAL_REGISTRY/kaiju/service-get-bounding-box:latest
-docker push $LOCAL_REGISTRY/kaiju/service-get-bounding-box:latest
-echo "Built and pushed service-get-bounding-box image..."
+# List of services to build
+services=(
+    "service-get-bounding-box"
+    "service-get-satellite-imagery"
+    "service-convert-images"
+    "service-resize-images"
+    "service-inject-kaiju"
+    "service-chip-images"
+)
 
-echo "Building service-get-satellite-imagery image..."
-docker build --build-arg SERVICE_NAME=service-get-satellite-imagery -t kaiju/service-get-satellite-imagery:latest -f ./Dockerfiles/Dockerfile.service .
-docker tag kaiju/service-get-satellite-imagery:latest $LOCAL_REGISTRY/kaiju/service-get-satellite-imagery:latest
-docker push $LOCAL_REGISTRY/kaiju/service-get-satellite-imagery:latest
-echo "Built and pushed service-get-satellite-imagery image..."
-
-echo "Building service-convert-images image..."
-docker build --build-arg SERVICE_NAME=service-convert-images -t kaiju/service-convert-images:latest -f ./Dockerfiles/Dockerfile.service .
-docker tag kaiju/service-convert-images:latest $LOCAL_REGISTRY/kaiju/service-convert-images:latest
-docker push $LOCAL_REGISTRY/kaiju/service-convert-images:latest
-echo "Built and pushed service-convert-images image..."
-
-echo "Building service-resize-images image..."
-docker build --build-arg SERVICE_NAME=service-resize-images -t kaiju/service-resize-images:latest -f ./Dockerfiles/Dockerfile.service .
-docker tag kaiju/service-resize-images:latest $LOCAL_REGISTRY/kaiju/service-resize-images:latest
-docker push $LOCAL_REGISTRY/kaiju/service-resize-images:latest
-echo "Built and pushed service-resize-images image..."
-
-echo "Building service-inject-kaiju image..."
-docker build --build-arg SERVICE_NAME=service-inject-kaiju -t kaiju/service-inject-kaiju:latest -f ./Dockerfiles/Dockerfile.service .
-docker tag kaiju/service-inject-kaiju:latest $LOCAL_REGISTRY/kaiju/service-inject-kaiju:latest
-docker push $LOCAL_REGISTRY/kaiju/service-inject-kaiju:latest
-echo "Built and pushed service-inject-kaiju image..."
-
-echo "Building service-chip-images image..."
-docker build --build-arg SERVICE_NAME=service-chip-images -t kaiju/service-chip-images:latest -f ./Dockerfiles/Dockerfile.service .
-docker tag kaiju/service-chip-images:latest $LOCAL_REGISTRY/kaiju/service-chip-images:latest
-docker push $LOCAL_REGISTRY/kaiju/service-chip-images:latest
-echo "Built and pushed service-chip-images image..."
+# Build all services
+for service in "${services[@]}"; do
+    build_service $service
+done
 
 echo "Built and pushed all service images successfully!"
