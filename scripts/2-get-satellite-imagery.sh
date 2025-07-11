@@ -1,1 +1,0 @@
-docker run -v /home/kemack/github-projects/kaiju-detector/kaiju_data/in:/kaiju_data/in -v /home/kemack/github-projects/kaiju-detector/kaiju_data/config:/kaiju_data/config kaiju/service-get-satellite-imagery:latest

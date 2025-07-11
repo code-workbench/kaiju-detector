@@ -1,1 +1,0 @@
-docker run -v /home/kemack/github-projects/kaiju-detector/kaiju_data/config:/kaiju_data/config -v /home/kemack/github-projects/kaiju-detector/kaiju_data/real-injected:/kaiju_data/in -v /home/kemack/github-projects/kaiju-detector/kaiju_data/detection-results:/kaiju_data/out kaiju/service-check-image:latest
