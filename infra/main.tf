@@ -11,6 +11,18 @@ terraform {
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
+  
+  # Configure for Azure Government or Azure Commercial
+  environment = var.azure_environment
+  
+  # Optional: Set specific endpoints for Azure Government
+  # These will be ignored if environment is set to "public" (Azure Commercial)
+  dynamic "azure_government" {
+    for_each = var.azure_environment == "usgovernment" ? [1] : []
+    content {
+      # Azure Government specific configuration if needed
+    }
+  }
 }
 
 # Create a resource group

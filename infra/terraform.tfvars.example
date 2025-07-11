@@ -1,8 +1,16 @@
-# Example terraform.tfvars file
-# Copy this file to terraform.tfvars and modify the values as needed
+# Example Terraform variables configuration
+# Copy this file to terraform.tfvars and modify as needed
 
-resource_group_name = "rg-kaiju-detector-dev"
-location           = "usgovvirginia"
+# Azure cloud environment configuration
+# For Azure Commercial (default):
+azure_environment = "public"
+
+# For Azure Government:
+# azure_environment = "usgovernment"
+
+# Basic configuration
+resource_group_name = "kaiju-detector-rg"
+location           = "East US"  # Use "USGov Virginia" for Azure Government
 prefix             = "kaiju"
 environment        = "dev"
 node_count         = 2
@@ -17,3 +25,12 @@ node_vm_size       = "Standard_D2s_v3"
 # For different regions:
 # location = "West US 2"
 # location = "West Europe"
+
+# Network configuration
+vnet_address_space              = ["10.0.0.0/16"]
+aks_subnet_address_prefixes     = ["10.0.1.0/24"]
+services_subnet_address_prefixes = ["10.0.2.0/24"]
+
+# Uncomment to use existing network resources
+# existing_vnet_id = "/subscriptions/your-subscription-id/resourceGroups/your-rg/providers/Microsoft.Network/virtualNetworks/your-vnet"
+# existing_aks_subnet_id = "/subscriptions/your-subscription-id/resourceGroups/your-rg/providers/Microsoft.Network/virtualNetworks/your-vnet/subnets/your-aks-subnet"

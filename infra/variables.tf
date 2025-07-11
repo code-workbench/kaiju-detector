@@ -119,3 +119,21 @@ variable "acr_subnet_address_prefixes" {
   type        = list(string)
   default     = ["10.0.3.0/24"]
 }
+
+# Azure cloud environment configuration
+variable "azure_environment" {
+  description = "Azure cloud environment - 'public' for Azure Commercial, 'usgovernment' for Azure Government"
+  type        = string
+  default     = "public"
+
+  validation {
+    condition     = contains(["public", "usgovernment"], var.azure_environment)
+    error_message = "azure_environment must be either 'public' (Azure Commercial) or 'usgovernment' (Azure Government)."
+  }
+}
+
+variable "storage_subnet_address_prefixes" {
+  description = "Address prefixes for the storage subnet"
+  type        = list(string)
+  default     = ["10.0.3.0/24"]
+}
