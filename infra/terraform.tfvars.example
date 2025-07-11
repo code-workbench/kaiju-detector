@@ -1,0 +1,19 @@
+# Example terraform.tfvars file
+# Copy this file to terraform.tfvars and modify the values as needed
+
+resource_group_name = "rg-kaiju-detector-dev"
+location           = "usgovvirginia"
+prefix             = "kaiju"
+environment        = "dev"
+node_count         = 2
+node_vm_size       = "Standard_D2s_v3"
+
+# Alternative configurations:
+# For production:
+# environment = "prod"
+# node_count = 3
+# node_vm_size = "Standard_D4s_v3"
+
+# For different regions:
+# location = "West US 2"
+# location = "West Europe"

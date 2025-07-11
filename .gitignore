@@ -162,3 +162,5 @@ kaiju_data/*
 src/config/api_key.json
 
 service-check-image/config.json
+infra/.terraform.lock.hcl
+infra/.terraform/*
